@@ -7,7 +7,9 @@ function normalizeMovie(item) {
     releaseDate: item.release_date || item.first_air_date,
     backdrop: item.backdrop_path,
     overview: item.overview,
-    adult: item.adult
+    adult: item.adult,
+    genreIds: item.genre_ids,
+    voteCount: item.vote_count
   }
 }
 
