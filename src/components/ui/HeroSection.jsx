@@ -33,10 +33,10 @@ function HeroSection({ movie, genres }) {
           <span>{movie.releaseDate}</span>
           <span className="w-0.75 h-0.75 rounded-full bg-white/30" />
           {genres.map((genre, i) => (
-            <>
-              <span key={i}>{genre}</span>
+            <div key={i}>
+              <span>{genre}</span>
               <span className="w-0.75 h-0.75 rounded-full bg-white/30" />
-            </>)
+            </div>)
           )}
           <span className="flex items-center gap-1 text-amber-400">
             <img
@@ -45,7 +45,7 @@ function HeroSection({ movie, genres }) {
               alt=""
               aria-hidden="true"
             />
-            7.8
+            {(movie.rating).toFixed(1)}
           </span>
         </div>
 

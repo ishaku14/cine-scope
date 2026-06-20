@@ -9,7 +9,8 @@ function normalizeMovie(item) {
     overview: item.overview,
     adult: item.adult,
     genreIds: item.genre_ids,
-    voteCount: item.vote_count
+    voteCount: item.vote_count,
+    rating: item.vote_average
   }
 }
 

@@ -6,10 +6,10 @@ import MovieRow from "../components/ui/MovieRow";
 import TonightsPick from "../components/ui/TonightsPick";
 import normalizeMovie from "../utils/normalizeMovie";
 import getGenreNames from "../utils/getGenreNames";
-import FooterNav from "../components/layout/FooterNav";
+import Footer from "../components/layout/Footer";
 const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
 
-function HomePage() {
+function HomePage({ watchList, addToWatchList }) {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [featuredMovie, setfeaturedMovie] = useState([]);
@@ -77,16 +77,26 @@ function HomePage() {
     <>
       <title>Home</title>
 
-      <Header />
+      <Header watchList={watchList} />
 
       <main className="px-4 py-16">
         <HeroSection movie={featuredMovie} genres={heroGenres} />
-        <MovieRow title={"Trending Today"} movies={trendingMovies} />
+        <MovieRow 
+          title={"Trending Today"}
+          movies={trendingMovies}
+          addToWatchList={addToWatchList}
+        />
+
         <TonightsPick />
-        <MovieRow title={"Top Rated"} movies={topRatedMovies} />
+
+        <MovieRow 
+          title={"Top Rated"}
+          movies={topRatedMovies}
+          addToWatchList={addToWatchList}
+        />
       </main>
 
-      <FooterNav />
+      <Footer />
     </>
   );
 }

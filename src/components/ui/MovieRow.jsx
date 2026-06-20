@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-function MovieRow({ title, movies = [] }) {
+function MovieRow({ title, movies = [], addToWatchList }) {
   return (
     <section className="mb-12 group/section">
       {/* Section header */}
@@ -20,7 +20,7 @@ function MovieRow({ title, movies = [] }) {
       <div className="flex gap-4 sm:gap-4  sm:px-6 lg:px-8 pb-4 overflow-x-auto scrollbar-none mask-[linear-gradient(to_right,transparent_0,black_0.3rem,black_calc(100%-2rem),transparent_100%)]">
         {movies.map((movie) => (
           <div key={movie.id} className="flex-none w-32.5 sm:w-37.5 md:w-40 transition-transform duration-200 ease-out hover:-translate-y-2 hover:scale-[1.0] cursor-pointer will-change-transform">
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} addToWatchList={addToWatchList} />
           </div>
         ))}
       </div>

@@ -1,6 +1,9 @@
 import { Link } from "react-router";
+import { getItem } from "../../utils/localStorage";
 
 function Header() {
+  const watchListCount = getItem('watchList')?.length || 0
+
   return (
     <header className="fixed top-0 left-0 right-0 flex items-center justify-between px-4 h-16 z-100 bg-background">
       <div className="flex items-center gap-1.5">
@@ -8,9 +11,10 @@ function Header() {
           CineScope
         </span>
 
-        <ul className="flex gap-4 ml-4 text-gray-400 text-[0.8rem]">
+        <ul className="flex gap-4 ml-4 text-gray-400 text-[0.8rem] tracking-widest uppercase">
           <li><Link className="hover:text-accent" to="/">Home</Link></li>
-          <li><Link className="hover:text-accent" to="/favorites">Favorites</Link></li>
+          <li><Link className="hover:text-accent"  to="watchlist">WATCHLIST</Link></li>
+          <li className="-ml-3 text-accent">({watchListCount})</li>
         </ul>
       </div>
  
