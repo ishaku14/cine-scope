@@ -1,58 +1,80 @@
 import { Link } from "react-router";
 import PlayIcon from "../../assets/icons/icons8-play-30.png";
 import InfoIcon from "../../assets/icons/icons8-info-50.png";
+import StarRating from "../../assets/icons/star-rating.png";
 
 function HeroSection({ movie, genres }) {
   if (!movie) return null;
   if (!genres) return null;
 
   return (
-    <section className="relative overflow-hidden h-screen">
-      <div className="absolute inset-0 h-full">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.backdrop}`}
-          alt="movie poster"
-          className="h-full w-full object-cover"
-        />
+    <section className="relative w-full overflow-hidden bg-[#0a0a0f] h-[min(92vh,680px)] mb-6">
+      <img
+        className="absolute inset-0 w-full h-full object-cover object-[center_20%] opacity-60"
+        src={`https://image.tmdb.org/t/p/original${movie.backdrop}`}
+        alt="Movie backdrop image"
+      />
 
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-black/10"></div>
-      </div>
+      {/* Left-to-right gradient overlay */}
+      <div className="absolute inset-0 bg-linear-to-r from-[#05050c]/95 via-[#05050c]/70 to-transparent" />
 
-      <div className="relative z-10 h-full flex items-end px-6 pb-12">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="bg-yellow-500 font-bold px-2 py-1 rounded-lg">
-              IMDb
-            </span>
+      {/* Bottom vignette */}
+      <div className="absolute inset-0 bg-linear-to-t from-[#05050c]/10 to-transparent" />
 
-            <span className="font-bold text-white">8.8</span>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col justify-end h-full px-5 pb-10 max-w-xl sm:px-10 sm:pb-14 lg:px-20 lg:pb-16">
+        <div className="w-15 h-1 bg-accent rounded-sm mb-4" />
 
-            {genres.map((genre, index) => {
-              return (
-                <span className="text-gray-300" key={index}>
-                  {genre}
-                </span>
-              );
-            })}
-          </div>
+        <h1 className="text-[clamp(2rem,5.5vw,3.5rem)] font-bold text-white leading-tight tracking-tight mb-2">
+          {movie.title}
+        </h1>
 
-          <h1 className="text-4xl font-bold text-white">{movie.title}</h1>
+        <div className="flex items-center gap-1.5 text-[0.72rem] uppercase tracking-widest text-white/50 mb-4">
+          <span>{movie.releaseDate}</span>
+          <span className="w-0.75 h-0.75 rounded-full bg-white/30" />
+          {genres.map((genre, i) => (
+            <>
+              <span key={i}>{genre}</span>
+              <span className="w-0.75 h-0.75 rounded-full bg-white/30" />
+            </>)
+          )}
+          <span className="flex items-center gap-1 text-amber-400">
+            <img
+              className="w-2.75 h-2.75"
+              src={StarRating}
+              alt=""
+              aria-hidden="true"
+            />
+            7.8
+          </span>
+        </div>
 
-          <p className="mb-6 text-gray-300">{movie.overview}</p>
+        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/40 mb-1">Overview</p>
 
-          <div className="flex gap-4 text-white whitespace-nowrap justify-center">
-            <button className="rounded-xl bg-accent px-6 py-4 border-none font-medium flex items-center gap-4 cursor-pointer">
-              <img className="w-5" src={PlayIcon} alt="" />
-              Watch Trailers
+        <p className="text-[clamp(0.82rem,1.5vw,0.92rem)] text-white/70 leading-relaxed max-w-lg mb-7 line-clamp-4">
+          {movie.overview}
+        </p>
+
+        <div className="flex items-center gap-3 flex-wrap">
+          <button
+            className="flex items-center gap-1.5 bg-accent text-white text-[0.82rem] font-semibold tracking-wide px-5 py-2.5 rounded cursor-pointer hover:-translate-y-px transition-transform">
+            <img className="w-4" src={PlayIcon} alt="" aria-hidden="true" />
+            Play Trailer
+          </button>
+
+          <Link to={`/movie/${movie.id}`}>
+            <button
+              className="flex items-center gap-1.5 bg-white/-[0.08] border border-white/[0.14] text-white/90 text-[0.82rem] font-medium px-5 py-2.5 rounded cursor-pointer hover:bg-white/[0.14 hover:-translate-y-px transition-transform"
+            >
+              <img
+                className="w-3.5 opacity-75"
+                src={InfoIcon}
+                alt=""
+                aria-hidden="true"
+              />
+              View Details
             </button>
-
-            <Link to={`/movie/${movie.id}`}>
-              <button className="bg-background/80 rounded-xl px-6 py-4 font-bold flex gap-2 items-center border border-white/20 whitespace-nowrap cursor-pointer">
-                <img className="w-5" src={InfoIcon} alt="" />
-                view Details
-              </button>
-            </Link>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

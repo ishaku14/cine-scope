@@ -2,25 +2,33 @@ import { Link } from "react-router";
 
 function MovieCard({ movie }) {
   return (
-    <>
-      <Link to={`/movie/${movie.id}`}>
-        <div className="flex flex-col gap-1">
-          <div className="bg-white w-35 h-45 overflow-hidden rounded-2xl border border-accent cursor-pointer">
-            <img
-              className="w-full h-full overflow-hidden"
-              src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
-              alt=""
-            />
-          </div>
+  <Link to={`/movie/${movie.id}`} className="block group/card ">
+    <div className="flex flex-col gap-2">
 
-          <div className="flex flex-col">
-            <span className="font-bold text-[1.05rem]">{movie.title}</span>
-            <span className="text-gray-300">{movie.releaseDate}</span>
-          </div>
-        </div>
-      </Link>
-    </>
-  );
+      {/* Poster */}
+      <div className="relative w-full overflow-hidden rounded-xl bg-white/5 border border-white/[0.07] aspect-2/3">
+        <img 
+          className="w-full h-full object-cover object-center transition-transform duration-300 ease-out group-hover/card:scale-105"
+          src={`https://image.tmdb.org/t/p/w342${movie.posterPath}`}
+          alt={movie.title}
+        />
+
+        {/* Subtle bottom fade */}
+        <div className="absolute bottom-0 inset-x-0 h-1/4 pointer-events-none bg-linear-to-t from-[rgba(5,5,12,0.55)] via-0% to-transparent" />
+      </div>
+
+      <div className="flex flex-col gap-0.5 px-0.5">
+        <span className="font-semibold text-[0.82rem] text-white leading-snug line-clamp-1 group-hover/card:text-accent transition-colors duration-150">
+          {movie.title}
+        </span>
+
+        <span className="text-[0.68rem] text-white/40 tracking-wide">
+          {movie.releaseDate}
+        </span>
+      </div>
+    </div>
+  </Link>
+);
 }
 
 export default MovieCard;

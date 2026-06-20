@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Header from "../components/layout/Header";
 import HeroSection from "../components/ui/HeroSection";
-import SearchBar from "../components/ui/SearchBar";
 import MovieRow from "../components/ui/MovieRow";
 import TonightsPick from "../components/ui/TonightsPick";
 import normalizeMovie from "../utils/normalizeMovie";
 import getGenreNames from "../utils/getGenreNames";
+import FooterNav from "../components/layout/FooterNav";
 const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
 
 function HomePage() {
@@ -75,14 +75,18 @@ function HomePage() {
 
   return (
     <>
+      <title>Home</title>
+
       <Header />
-      <main className="bg-background">
+
+      <main className="px-4 py-16">
         <HeroSection movie={featuredMovie} genres={heroGenres} />
-        <SearchBar />
         <MovieRow title={"Trending Today"} movies={trendingMovies} />
         <TonightsPick />
         <MovieRow title={"Top Rated"} movies={topRatedMovies} />
       </main>
+
+      <FooterNav />
     </>
   );
 }
