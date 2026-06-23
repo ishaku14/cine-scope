@@ -19,6 +19,7 @@ const options = {
 function HomePage({ watchList, addToWatchList }) {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [featuredMovie, setfeaturedMovie] = useState([]);
   const [genres, setGenres] = useState([]);
 
@@ -60,20 +61,42 @@ function HomePage({ watchList, addToWatchList }) {
     getTopRatedMovies();
   }, []);
 
+  useEffect(() => {
+    const getUpcomingMovies = async () => {
+      const res = await fetch("https://api.themoviedb.org/3/movie/upcoming", options);
+      
+      const data = await res.json();
+
+      const normalizedData = data.results.map(normalizeMovie);
+
+      setUpcomingMovies(normalizedData);
+    };
+
+    getUpcomingMovies();
+  }, []);
+
   return (
     <>
       <title>Home</title>
 
       <Header watchList={watchList} />
 
-      <main className="px-4 py-16">
+      <main className="px-4 pt-16">
         <HeroSection movie={featuredMovie} genres={heroGenres} />
         <MovieRow 
-          title={"Trending Today"}
+          title={"Trending Now"}
           movies={trendingMovies}
           addToWatchList={addToWatchList}
           watchList={watchList}
           category={"trending"}
+        />
+
+        <MovieRow 
+          title={"Upcoming"}
+          movies={upcomingMovies}
+          addToWatchList={addToWatchList}
+          watchList={watchList}
+          category={"upcoming"}
         />
 
         <TonightsPick />
