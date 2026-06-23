@@ -15,7 +15,7 @@ function MovieCard({ movie, watchList ,addToWatchList }) {
   };
 
   return (
-    <div>
+    <div className="relative">
       <Link to={`/movie/${movie.id}`} className="block group/card ">
       <div className="flex flex-col gap-2">
         <div className="relative w-full overflow-hidden rounded-xl bg-white/5 border border-white/[0.07] aspect-2/3">
