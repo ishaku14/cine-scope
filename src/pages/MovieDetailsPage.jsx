@@ -3,6 +3,13 @@ import { useParams } from "react-router";
 import CastRow from "../components/ui/CastRow";
 import { IoMdArrowBack } from "react-icons/io";
 const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_TOKEN}`,
+  },
+};
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState({});
@@ -11,15 +18,7 @@ function MovieDetailsPage() {
   useEffect(() => {
     const getMovieDetails = async () => {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?append_to_response=credits`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${API_TOKEN}`,
-          },
-        },
-      );
+        `https://api.themoviedb.org/3/movie/${id}?append_to_response=credits`, options);
 
       const data = await res.json();
       setMovie(data);

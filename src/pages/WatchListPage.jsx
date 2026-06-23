@@ -1,9 +1,10 @@
 import { Link } from "react-router"
 import { HiOutlineBookOpen } from "react-icons/hi"
 import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import WatchListCard from "../components/ui/WatchListCard";
 
-function watchListPage({ watchList }) {
+function watchListPage({ watchList, setWatchList }) {
   if(!watchList) return null;
 
   const unwatched = watchList?.filter(m => !m.watched)
@@ -11,7 +12,7 @@ function watchListPage({ watchList }) {
 
   return (
     <div className="min-h-screen mt-16 bg-background text-white">
-      <Header />
+      <Header watchList={watchList} />
 
       <main className="px-4 sm:px-6 lg:px-8 pb-16">
         {/* Page title */}
@@ -20,7 +21,7 @@ function watchListPage({ watchList }) {
           <h1 className="text-2xl font-bold tracking-tight">My watchList</h1>
           {watchList.length > 0 && (
             <span className="text-[0.7rem] font-semibold uppercase tracking-widest text-white/30 ml-1">
-              {watchList?.length} {watchList.length === 1 ? "title" : "titles"}
+              {watchList?.length} {watchList.length === 1 ? "movie" : "movies"}
             </span>
           )}
         </div>
@@ -54,7 +55,7 @@ function watchListPage({ watchList }) {
             <div className="grid gap-4 [grid-template-columns:repeat(auto-fill, minmax(130px, 1fr))]"
               style={{ gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))" }}>
               {unwatched.map(movie => (
-                <WatchListCard key={movie.id} movie={movie} />
+                <WatchListCard key={movie.id} movie={movie} setWatchList={setWatchList} />
               ))}
             </div>
           </section>
@@ -78,13 +79,14 @@ function watchListPage({ watchList }) {
               className="grid gap-4"
               style={{ gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))" }}>
               {watched.map(movie => (
-                <WatchListCard key={movie.id} movie={movie} />
+                <WatchListCard key={movie.id} movie={movie} setWatchList={setWatchList} />
               ))}
             </div>
           </section>
         )}
-
       </main>
+
+      <Footer />
     </div>
   )
 }

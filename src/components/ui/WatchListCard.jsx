@@ -1,12 +1,19 @@
 import { Link } from "react-router";
 import { MdCheckCircle } from "react-icons/md"
 
-function WatchListCard({ movie }) {
+function WatchListCard({ movie, setWatchList }) {
   if(!movie) return null;
 
+  const handleWatched = () => {
+    setWatchList(prev => prev.map(item => item.id === movie.id? { ...item, watched: !item.watched } : item));
+  };
+
+  const removeFromWatchList = () => {
+    setWatchList(prev => prev.filter(item => item.id !== movie.id));
+  };
+
   return (
-    <div
-      className="group/card flex flex-col gap-2 transition-transform duration-200 ease-out hover:-translate-y-2 hover:scale-[1.03] will-change-transform">
+    <div className="group/card flex flex-col gap-2 transition-transform duration-200 ease-out hover:-translate-y-2 hover:scale-[1.03] will-change-transform">
 
       {/* Poster */}
       <div className="relative w-full overflow-hidden rounded-xl  border border-white/[0.07] bg-white/5 aspect-2/3">
@@ -25,20 +32,16 @@ function WatchListCard({ movie }) {
           </div>
         )}
 
-        <div
-          className="absolute bottom-0 inset-x-0 flex items-center justify-between px-2 py-1.5 bg-black/70 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
-          <button
-            className="text-[0.62rem] font-semibold uppercase tracking-widest text-white/70 hover:text-accent transition-colors duration-150 cursor-pointer">
+        <div className="absolute bottom-0 inset-x-0 flex items-center justify-between px-2 py-1.5 bg-black/70 opacity-0 group-hover/card:opacity-100 transition-opacity duration-200">
+          <button className="text-[0.62rem] font-semibold uppercase tracking-widest text-white/70 hover:text-accent transition-colors duration-150 cursor-pointer" onClick={handleWatched}>
             {movie.watched ? "Unmark" : "Watched"}
           </button>
-          <button
-            className="text-[0.62rem] font-semibold uppercase tracking-widest text-white/40 hover:text-red-400 transition-colors duration-150 cursor-pointer">
+          <button className="text-[0.62rem] font-semibold uppercase tracking-widest text-white/40 hover:text-red-400 transition-colors duration-150 cursor-pointer" onClick={removeFromWatchList}>
             Remove
           </button>
         </div>
       </div>
 
-      {/* Meta */}
       <div className="flex flex-col gap-0.5 px-0.5">
         <span
           className={`font-semibold text-[0.82rem] leading-snug line-clamp-1 transition-colors duration-150 group-hover/card:text-accent ${movie.watched ? "text-white/40" : "text-white"}`}>

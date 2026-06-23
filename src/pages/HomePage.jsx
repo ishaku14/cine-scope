@@ -8,6 +8,13 @@ import normalizeMovie from "../utils/normalizeMovie";
 import getGenreNames from "../utils/getGenreNames";
 import Footer from "../components/layout/Footer";
 const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_TOKEN}`,
+  },
+};
 
 function HomePage({ watchList, addToWatchList }) {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -19,13 +26,7 @@ function HomePage({ watchList, addToWatchList }) {
 
   useEffect(() => {
     const getGenres = async () => {
-      const res = await fetch("https://api.themoviedb.org/3/genre/movie/list", {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${API_TOKEN}`,
-        },
-      });
+      const res = await fetch("https://api.themoviedb.org/3/genre/movie/list", options);
 
       const data = await res.json();
       setGenres(data.genres);
@@ -36,15 +37,7 @@ function HomePage({ watchList, addToWatchList }) {
   useEffect(() => {
     const getTrendingMovies = async () => {
       const res = await fetch(
-        "https://api.themoviedb.org/3/trending/movie/day",
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${API_TOKEN}`,
-          },
-        },
-      );
+        "https://api.themoviedb.org/3/trending/movie/day", options);
 
       const data = await res.json();
       const normalizedData = data.results.map(normalizeMovie);
@@ -58,13 +51,7 @@ function HomePage({ watchList, addToWatchList }) {
 
   useEffect(() => {
     const getTopRatedMovies = async () => {
-      const res = await fetch("https://api.themoviedb.org/3/tv/top_rated", {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${API_TOKEN}`,
-        },
-      });
+      const res = await fetch("https://api.themoviedb.org/3/movie/top_rated", options);
 
       const data = await res.json();
       const normalizedData = data.results.map(normalizeMovie);
@@ -85,6 +72,8 @@ function HomePage({ watchList, addToWatchList }) {
           title={"Trending Today"}
           movies={trendingMovies}
           addToWatchList={addToWatchList}
+          watchList={watchList}
+          category={"trending"}
         />
 
         <TonightsPick />
@@ -93,6 +82,8 @@ function HomePage({ watchList, addToWatchList }) {
           title={"Top Rated"}
           movies={topRatedMovies}
           addToWatchList={addToWatchList}
+          watchList={watchList}
+          category={"top_rated"}
         />
       </main>
 

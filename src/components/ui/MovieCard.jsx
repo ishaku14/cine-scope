@@ -3,8 +3,8 @@ import { GoBookmark } from "react-icons/go";
 import { GoBookmarkFill } from "react-icons/go";
 import { Link } from "react-router";
 
-function MovieCard({ movie, addToWatchList }) {
-  const [isClicked, setIsClicked] = useState(false);
+function MovieCard({ movie, watchList ,addToWatchList }) {
+  const [isClicked, setIsClicked] = useState(() => watchList?.some(m => m.id === movie.id));
 
   const handleBookmark = (e) => {
     e.stopPropagation();
@@ -45,7 +45,6 @@ function MovieCard({ movie, addToWatchList }) {
         {isClicked ? (<GoBookmarkFill />) : (<GoBookmark />)}
       </button>
     </div>
-    
   );
 }
 
