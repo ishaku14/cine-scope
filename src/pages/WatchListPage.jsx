@@ -12,6 +12,9 @@ function watchListPage({ watchList, setWatchList }) {
 
   return (
     <div className="min-h-screen mt-16 bg-background text-white">
+
+      <title>Watchlist</title>
+      
       <Header watchList={watchList} />
 
       <main className="px-4 sm:px-6 lg:px-8 pb-16">

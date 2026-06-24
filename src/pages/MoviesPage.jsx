@@ -88,6 +88,8 @@ function MoviesPage({ watchList, addToWatchList }) {
 
   return (
     <>
+      <title>Movies</title>
+      
       <Header watchList={watchList} />
 
       <main className="px-8 mt-16 bg-background text-white">

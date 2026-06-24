@@ -23,6 +23,7 @@ function MovieDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background text-white">
+      <title>Details</title>
       <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 py-4">
         <button
           className="flex items-center gap-2 text-[0.78rem] font-medium uppercasetracking-widest text-white/40 hover:text-white transition-colors duration-200 cursor-pointer" onClick={() => navigate(-1)}>
