@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import PlayIcon from "../../assets/icons/icons8-play-30.png";
-import InfoIcon from "../../assets/icons/icons8-info-50.png";
-import StarRating from "../../assets/icons/star-rating.png";
+import { FaPlay } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
+import { RiInformation2Line } from "react-icons/ri";
 
 function HeroSection({ movie, genres }) {
   if (!movie) return null;
@@ -39,12 +39,7 @@ function HeroSection({ movie, genres }) {
             </div>)
           )}
           <span className="flex items-center gap-1 text-amber-400">
-            <img
-              className="w-2.75 h-2.75"
-              src={StarRating}
-              alt=""
-              aria-hidden="true"
-            />
+            <FaStar />
             {(movie.rating).toFixed(1)}
           </span>
         </div>
@@ -58,20 +53,14 @@ function HeroSection({ movie, genres }) {
         <div className="flex items-center gap-3 flex-wrap">
           <button
             className="flex items-center gap-1.5 bg-accent text-white text-[0.82rem] font-semibold tracking-wide px-5 py-2.5 rounded cursor-pointer hover:-translate-y-px transition-transform">
-            <img className="w-4" src={PlayIcon} alt="" aria-hidden="true" />
+            <FaPlay />
             Play Trailer
           </button>
 
           <Link to={`/movie/${movie.id}`}>
             <button
-              className="flex items-center gap-1.5 bg-white/-[0.08] border border-white/[0.14] text-white/90 text-[0.82rem] font-medium px-5 py-2.5 rounded cursor-pointer hover:bg-white/[0.14 hover:-translate-y-px transition-transform"
-            >
-              <img
-                className="w-3.5 opacity-75"
-                src={InfoIcon}
-                alt=""
-                aria-hidden="true"
-              />
+              className="flex items-center gap-1.5 bg-white/-[0.08] border border-white/[0.14] text-white/90 text-[0.82rem] font-medium px-5 py-2.5 rounded cursor-pointer hover:bg-white/[0.14 hover:-translate-y-px transition-transform">
+              <RiInformation2Line size={21} />
               View Details
             </button>
           </Link>
