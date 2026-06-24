@@ -5,17 +5,9 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import MovieCard from "../components/ui/MovieCard";
 import NormalizeMovie from "../utils/normalizeMovie";
+import { options } from "../utils/fetchOptions";
 
-const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
 const BASE_URL = "https://api.themoviedb.org/3";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_TOKEN}`,
-  },
-};
 
 const ENDPOINTS = {
   // trending: "/trending/movie/day",

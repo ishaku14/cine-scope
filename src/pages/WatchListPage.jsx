@@ -52,7 +52,7 @@ function watchListPage({ watchList, setWatchList }) {
               </span>
             </div>
 
-            <div className="grid gap-4 [grid-template-columns:repeat(auto-fill, minmax(130px, 1fr))]"
+            <div className="grid gap-4"
               style={{ gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))" }}>
               {unwatched.map(movie => (
                 <WatchListCard key={movie.id} movie={movie} setWatchList={setWatchList} />

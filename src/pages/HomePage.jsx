@@ -2,19 +2,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Header from "../components/layout/Header";
 import HeroSection from "../components/ui/HeroSection";
+import SearchBar from "../components/ui/SearchBar";
 import MovieRow from "../components/ui/MovieRow";
 import TonightsPick from "../components/ui/TonightsPick";
 import normalizeMovie from "../utils/normalizeMovie";
 import getGenreNames from "../utils/getGenreNames";
 import Footer from "../components/layout/Footer";
-const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_TOKEN}`,
-  },
-};
+import SearchResults from "../components/ui/searchResults";
+import { options } from "../utils/fetchOptions";
 
 function HomePage({ watchList, addToWatchList }) {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -22,7 +17,8 @@ function HomePage({ watchList, addToWatchList }) {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [featuredMovie, setfeaturedMovie] = useState([]);
   const [genres, setGenres] = useState([]);
-
+  const [query, setQuery] = useState("");
+  
   const heroGenres = featuredMovie ? getGenreNames(featuredMovie.genreIds, genres) : [];
 
   useEffect(() => {
@@ -83,31 +79,18 @@ function HomePage({ watchList, addToWatchList }) {
 
       <main className="px-4 pt-16">
         <HeroSection movie={featuredMovie} genres={heroGenres} />
-        <MovieRow 
-          title={"Trending Now"}
-          movies={trendingMovies}
-          addToWatchList={addToWatchList}
-          watchList={watchList}
-          category={"trending"}
-        />
+        <SearchBar query={query} setQuery={setQuery} />
 
-        <MovieRow 
-          title={"Upcoming"}
-          movies={upcomingMovies}
-          addToWatchList={addToWatchList}
-          watchList={watchList}
-          category={"upcoming"}
-        />
-
-        <TonightsPick />
-
-        <MovieRow 
-          title={"Top Rated"}
-          movies={topRatedMovies}
-          addToWatchList={addToWatchList}
-          watchList={watchList}
-          category={"top_rated"}
-        />
+        {query ? (
+          <SearchResults query={query} watchList={watchList} addToWatchList={addToWatchList} />
+        ) : (
+          <>
+            <MovieRow title={"Trending Now"} movies={trendingMovies} addToWatchList={addToWatchList} watchList={watchList} category={"trending"} />
+            <MovieRow title={"Upcoming"} movies={upcomingMovies} addToWatchList={addToWatchList} watchList={watchList} category={"upcoming"} />
+            <TonightsPick />
+            <MovieRow  title={"Top Rated"} movies={topRatedMovies} addToWatchList={addToWatchList} watchList={watchList} category={"top_rated"} />
+          </>
+        )}
       </main>
 
       <Footer />

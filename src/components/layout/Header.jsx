@@ -9,7 +9,7 @@ function Header({ watchList }) {
         </span>
       </div>
 
-      <ul className="flex gap-4 ml-4 text-gray-400 text-[0.8rem] tracking-widest uppercase">
+      <ul className="flex gap-4 ml-4 text-gray-400 text-[0.8rem] tracking-widest uppercase items-center">
         <li><NavLink className={({ isActive }) => isActive ? "text-accent" : "text-gray-400"} to="/">Home</NavLink></li>
         <li><NavLink className={({ isActive }) => isActive ? "text-accent" : "text-gray-400"}  to="/watchlist">WATCHLIST</NavLink></li>
         <li className="-ml-3 text-accent">({watchList.length})</li>

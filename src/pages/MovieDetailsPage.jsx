@@ -2,14 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import CastRow from "../components/ui/CastRow";
 import { IoMdArrowBack } from "react-icons/io";
-const API_TOKEN = import.meta.env.VITE_API_READ_ACCESS_TOKEN;
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_TOKEN}`,
-  },
-};
+import { options } from "../utils/fetchOptions";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState({});
