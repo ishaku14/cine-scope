@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { FaPlay } from "react-icons/fa";
+// import { FaPlay } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 import { RiInformation2Line } from "react-icons/ri";
 
@@ -51,15 +51,15 @@ function HeroSection({ movie, genres }) {
         </p>
 
         <div className="flex items-center gap-3 flex-wrap">
-          <button
+          {/* <button
             className="flex items-center gap-1.5 bg-accent text-white text-[0.82rem] font-semibold tracking-wide px-5 py-2.5 rounded cursor-pointer hover:-translate-y-px transition-transform">
             <FaPlay />
             Play Trailer
-          </button>
+          </button> */}
 
           <Link to={`/movie/${movie.id}`}>
             <button
-              className="flex items-center gap-1.5 bg-white/-[0.08] border border-white/[0.14] text-white/90 text-[0.82rem] font-medium px-5 py-2.5 rounded cursor-pointer hover:bg-white/[0.14 hover:-translate-y-px transition-transform">
+              className="flex items-center gap-1.5 bg-white/-[0.08] bg-accent border border-white/[0.14] text-white/90 text-[0.82rem] font-semibold px-5 py-2.5 rounded cursor-pointer hover:bg-white/[0.14 hover:-translate-y-px transition-transform">
               <RiInformation2Line size={21} />
               View Details
             </button>

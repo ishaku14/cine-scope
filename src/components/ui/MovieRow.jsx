@@ -15,7 +15,7 @@ function MovieRow({ title, movies = [], watchList, addToWatchList, category }) {
 
         <Link to={`/movies/${category}`}>
           <span className="text-[0.75rem] font-medium uppercase tracking-widest text-white/40 cursor-pointer hover:text-accent transition-colors duration-200">
-            See all
+            see more
           </span>
         </Link>
       </div>

@@ -4,7 +4,6 @@ import Header from "../components/layout/Header";
 import HeroSection from "../components/ui/HeroSection";
 import SearchBar from "../components/ui/SearchBar";
 import MovieRow from "../components/ui/MovieRow";
-import TonightsPick from "../components/ui/TonightsPick";
 import normalizeMovie from "../utils/normalizeMovie";
 import getGenreNames from "../utils/getGenreNames";
 import Footer from "../components/layout/Footer";
@@ -40,8 +39,8 @@ function HomePage({ watchList, addToWatchList }) {
       const normalizedData = data.results.map(normalizeMovie);
       setTrendingMovies(normalizedData);
 
-      const randomIndex = Math.floor(Math.random() * normalizedData.length);
-      setfeaturedMovie(normalizedData[randomIndex]);
+      // const randomIndex = Math.floor(Math.random() * normalizedData.length);
+      setfeaturedMovie(normalizedData[3]);
     };
     getTrendingMovies();
   }, []);
@@ -87,7 +86,6 @@ function HomePage({ watchList, addToWatchList }) {
           <>
             <MovieRow title={"Trending Now"} movies={trendingMovies} addToWatchList={addToWatchList} watchList={watchList} category={"trending"} />
             <MovieRow title={"Upcoming"} movies={upcomingMovies} addToWatchList={addToWatchList} watchList={watchList} category={"upcoming"} />
-            <TonightsPick />
             <MovieRow  title={"Top Rated"} movies={topRatedMovies} addToWatchList={addToWatchList} watchList={watchList} category={"top_rated"} />
           </>
         )}

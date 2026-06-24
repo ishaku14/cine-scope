@@ -41,7 +41,7 @@ function MovieCard({ movie, watchList ,addToWatchList }) {
       </div>
       </Link>
 
-      <button className={`${isClicked ? "text-accent" : "text-white"} text-[1.5rem] absolute bottom-13 right-1`} onClick={handleBookmark}>
+      <button className={`${isClicked ? "text-accent" : "text-white"} text-[1.5rem] absolute bottom-13 right-1 cursor-pointer`} onClick={handleBookmark}>
         {isClicked ? (<GoBookmarkFill />) : (<GoBookmark />)}
       </button>
     </div>

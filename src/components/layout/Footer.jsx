@@ -8,7 +8,7 @@ function Footer() {
         {/* Wordmark + tagline */}
         <div className="flex flex-col items-center sm:items-start gap-1">
           <span className="text-accent font-bold text-[1.2rem] tracking-tight">
-            CINESCOPE
+            MOVIEDGE
           </span>
           <p className="text-[0.68rem] uppercase tracking-widest text-white/25">
             Discover. Save. Watch.
